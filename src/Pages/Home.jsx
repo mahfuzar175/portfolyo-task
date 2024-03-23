@@ -3,6 +3,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -251,20 +252,33 @@ const Home = () => {
       </section>
 
         {/* projects section */}
-      <section className="bg-black text-white lg:p-16 p-5  py-24 mt-9">
-        <h2  className="font-libre font-semibold text-4xl mb-8">My Recent Works</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {
-                portfolio.user?.projects.sort((a, b) => a.sequence - b.sequence).map((project, index) => (
-                    <div key={index} className="space-y-6">
-                        <img src={project.image.url} alt="" />
-                        <h2 className="text-center font-libre text-3xl">Project {project.sequence}</h2>
-                    </div>
-                ))
-            }
-
+        <section className="bg-black text-white lg:p-16 p-5 py-24 mt-9">
+  <h2 className="font-libre font-semibold text-4xl mb-8">My Recent Works</h2>
+  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    {portfolio.user?.projects.sort((a, b) => a.sequence - b.sequence).map((project, index) => (
+      <div key={index} className="relative">
+        <img
+          src={project.image.url}
+          alt=""
+          className="w-full h-auto  filter brightness-100 hover:brightness-75"
+        />
+        <div className="absolute inset-0 duration-500 flex items-center justify-center opacity-0 transition bg-gray-800 h-[82%]  hover:opacity-75">
+          
+          <a
+                href="#"
+                className="inline-flex items-center justify-center h-14 px-8 py-0 text-base font-semibold text-center text-white no-underline align-middle transition-all duration-300 ease-in-out hover:bg-transparent  hover:border-2 bg-black border-black border-2  border-solid  cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline"
+              >
+                View Code
+                <FaGithub className="ml-2 mt-1"/>
+              </a>
         </div>
-      </section>
+        <h2 className="text-center font-libre text-3xl mt-4">Project {project.sequence}</h2>
+      </div>
+    ))}
+  </div>
+</section>
+
+
     </div>
   );
 };
