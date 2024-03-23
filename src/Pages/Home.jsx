@@ -24,7 +24,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className=" py-2 bg-black ">
+    <div className=" py-2 bg-black">
       {/* navbar section*/}
       <div className="drawer">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -69,7 +69,7 @@ const Home = () => {
                   <a href="#projects">Project</a>
                 </li>
                 <li>
-                  <a>Review</a>
+                  <a href="#reviews">Review</a>
                 </li>
               </ul>
             </div>
@@ -82,7 +82,10 @@ const Home = () => {
             </a>
           </div>
         </div>
-        <div className="drawer-side ">
+        <div
+          className="drawer-side "
+          style={{ zIndex: 9999, position: "fixed" }}
+        >
           <label
             htmlFor="my-drawer-3"
             aria-label="close sidebar"
@@ -91,19 +94,19 @@ const Home = () => {
           <ul className="menu p-4 w-80 min-h-full bg-black text-white font-roboto text-base">
             {/* Sidebar content here */}
             <li>
-              <a>Home</a>
+              <a href="#">Home</a>
             </li>
             <li>
-              <a>Services</a>
+              <a href="#services">Services</a>
             </li>
             <li>
-              <a>About</a>
+              <a href="#about">About</a>
             </li>
             <li>
-              <a>Project</a>
+              <a href="#projects">Project</a>
             </li>
             <li>
-              <a>Review</a>
+              <a href="#reviews">Review</a>
             </li>
           </ul>
         </div>
@@ -142,6 +145,42 @@ const Home = () => {
         </div>
       </section>
 
+      {/* services section */}
+      <section className="bg-black text-white lg:p-16 p-5 py-24 px-10">
+        <h2 className="font-libre text-4xl font-semibold mb-6">My services</h2>
+        <div className="flex flex-col">
+          {portfolio.user?.services.map((service, index) => (
+            <div
+              key={index}
+              className="border-t border-b border-collapse p-14 border-slate-900 group relative"
+            >
+              <div className="flex flex-col lg:flex-row lg:justify-between justify-start items-start lg:items-center">
+                <div>
+                  <h2 className="font-libre lg:text-6xl text-3xl">
+                    {service.name}
+                  </h2>
+                  <p className="font-roboto lg:text-2xl text-lg text-gray-400 mt-6">
+                    {service.desc}
+                  </p>
+                </div>
+                <a href="#">
+                  <div className="border rounded-full p-3 mt-6">
+                    <h2 className="lg:text-5xl text-2xl lg:mt-0 ">
+                      <FaArrowRightLong></FaArrowRightLong>
+                    </h2>
+                  </div>
+                </a>
+              </div>
+              <img
+                className="w-64 hidden lg:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                src={service.image.url}
+                alt=""
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* skill section */}
       <section className="bg-black text-white lg:p-16  p-5" id="about">
         <div className="px-12 border border-gray-900 py-12">
@@ -161,7 +200,7 @@ const Home = () => {
                   />
                 </div>
                 <div className="space-y-9 lg:w-1/2">
-                  <h1 className="font-semibold text-5xl font-libre">
+                  <h1 className="font-semibold lg:text-5xl text-3xl font-libre">
                     {portfolio.user?.about.subTitle}
                   </h1>
                   <p className="font-roboto text-gray-400">
@@ -297,19 +336,26 @@ const Home = () => {
         id="reviews"
       >
         <div className="mt-12">
-        {portfolio.user?.testimonials.map((testimonial, index) => (
-          <div key={index} className="mb-4 mt-12">
-            <h2 className="font-libre font-semibold lg:text-4xl text-xl">" {testimonial.review} "</h2>
-            <div className="flex justify-start items-center mt-6">
-            <img className="hidden lg:block" src={testimonial.image.url} alt="" />
-            <div>
-            <h2 className="font-libre">{testimonial.name}</h2>
-            <p className="text-slate-300 font-roboto">{testimonial.position}</p>
+          {portfolio.user?.testimonials.map((testimonial, index) => (
+            <div key={index} className="mb-4 mt-12">
+              <h2 className="font-libre font-semibold lg:text-4xl text-xl">
+                " {testimonial.review} "
+              </h2>
+              <div className="flex justify-start items-center mt-6">
+                <img
+                  className="hidden lg:block"
+                  src={testimonial.image.url}
+                  alt=""
+                />
+                <div>
+                  <h2 className="font-libre">{testimonial.name}</h2>
+                  <p className="text-slate-300 font-roboto">
+                    {testimonial.position}
+                  </p>
+                </div>
+              </div>
             </div>
-            </div>
-
-          </div>
-        ))}
+          ))}
         </div>
       </section>
     </div>
