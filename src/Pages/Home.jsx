@@ -204,10 +204,34 @@ const Home = () => {
           </TabPanel>
           <TabPanel>
             <div className="flex flex-col lg:flex-row justify-start gap-11">
-              <div className="space-y-8">
-                <h2 className="font-libre text-4xl">My Skills</h2>
-                <p className="font-roboto">{portfolio.user?.about.subTitle}</p>
+              <div className="space-y-8 w-1/2">
+                <div className="space-y-8">
+                  <h2 className="font-libre text-4xl">My Skills</h2>
+                  <p className="font-roboto">
+                    {portfolio.user?.about.subTitle}
+                  </p>
+                </div>
+                {/* progress */}
+                <div className="font-libre">
+
+        {portfolio.user?.skills
+          .sort((a, b) => a.sequence - b.sequence)
+          .map((skill, index) => (
+            <div key={index} className="mb-4">
+              <div className="flex justify-between items-center">
+              <h3>{skill.name}</h3>
+              <p>{skill.percentage}%</p>
               </div>
+              <progress
+                className="progress w-full progress-success"
+                value={skill.percentage}
+                max="100"
+              ></progress>
+            </div>
+          ))}
+      </div>
+              </div>
+
               <div>
 
               </div>
