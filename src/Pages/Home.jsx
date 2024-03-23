@@ -203,8 +203,8 @@ const Home = () => {
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="flex flex-col lg:flex-row justify-start gap-11">
-              <div className="space-y-8 w-1/2">
+            <div className="flex flex-col lg:flex-row justify-start gap-24">
+              <div className="space-y-8 lg:w-1/2">
                 <div className="space-y-8">
                   <h2 className="font-libre text-4xl">My Skills</h2>
                   <p className="font-roboto">
@@ -232,8 +232,17 @@ const Home = () => {
       </div>
               </div>
 
-              <div>
 
+              <div>
+                <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
+                    {
+                        portfolio.user?.skills.map((skill, index) => (
+                            <div key={index} >
+                                <img className="w-40 bg-gray-800 rounded-lg" src={skill.image.url} alt="" />
+                            </div>
+                        ))
+                    }
+                </div>
               </div>
             </div>
           </TabPanel>
