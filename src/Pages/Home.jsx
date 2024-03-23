@@ -141,6 +141,7 @@ const Home = () => {
         </div>
       </section>
 
+      {/* skill section */}
       <section className="bg-black text-white lg:p-16 p-5  py-24 border border-gray-900">
         <Tabs>
           <TabList className="text-center font-semibold text-lg font-libre mb-9">
@@ -213,40 +214,56 @@ const Home = () => {
                 </div>
                 {/* progress */}
                 <div className="font-libre">
-
-        {portfolio.user?.skills
-          .sort((a, b) => a.sequence - b.sequence)
-          .map((skill, index) => (
-            <div key={index} className="mb-4">
-              <div className="flex justify-between items-center">
-              <h3>{skill.name}</h3>
-              <p>{skill.percentage}%</p>
+                  {portfolio.user?.skills
+                    .sort((a, b) => a.sequence - b.sequence)
+                    .map((skill, index) => (
+                      <div key={index} className="mb-4">
+                        <div className="flex justify-between items-center">
+                          <h3>{skill.name}</h3>
+                          <p>{skill.percentage}%</p>
+                        </div>
+                        <progress
+                          className="progress w-full progress-success"
+                          value={skill.percentage}
+                          max="100"
+                        ></progress>
+                      </div>
+                    ))}
+                </div>
               </div>
-              <progress
-                className="progress w-full progress-success"
-                value={skill.percentage}
-                max="100"
-              ></progress>
-            </div>
-          ))}
-      </div>
-              </div>
-
 
               <div>
                 <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
-                    {
-                        portfolio.user?.skills.map((skill, index) => (
-                            <div key={index} >
-                                <img className="w-40 bg-gray-800 rounded-lg" src={skill.image.url} alt="" />
-                            </div>
-                        ))
-                    }
+                  {portfolio.user?.skills.map((skill, index) => (
+                    <div key={index}>
+                      <img
+                        className="w-40 bg-gray-800 rounded-lg"
+                        src={skill.image.url}
+                        alt=""
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
           </TabPanel>
         </Tabs>
+      </section>
+
+        {/* projects section */}
+      <section className="bg-black text-white lg:p-16 p-5  py-24 mt-9">
+        <h2  className="font-libre font-semibold text-4xl mb-8">My Recent Works</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {
+                portfolio.user?.projects.sort((a, b) => a.sequence - b.sequence).map((project, index) => (
+                    <div key={index} className="space-y-6">
+                        <img src={project.image.url} alt="" />
+                        <h2 className="text-center font-libre text-3xl">Project {project.sequence}</h2>
+                    </div>
+                ))
+            }
+
+        </div>
       </section>
     </div>
   );
