@@ -3,6 +3,9 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa";
+import { FaPhoneVolume } from "react-icons/fa6";
+import { BsMailbox2Flag } from "react-icons/bs";
+import { FaHouseUser } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
@@ -28,11 +31,34 @@ const Home = () => {
   }, []);
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
-    speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    pauseOnHover: true,
+  };
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleMessageChange = (e) => {
+    setMessage(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
   };
 
   return (
@@ -86,7 +112,7 @@ const Home = () => {
               </ul>
             </div>
             <a
-              href="#"
+              href="#contact"
               className="inline-flex items-center justify-center h-14 px-8 py-0 text-base font-semibold text-center text-white no-underline align-middle transition-all duration-300 ease-in-out bg-transparent  bg-gray-950 hover:border-2 border-gray-950 border-2 hover:bg-black border-solid  cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline"
             >
               Contact
@@ -133,7 +159,7 @@ const Home = () => {
             </h1>
             <div className="flex flex-col lg:flex-row justify-center items-center lg:gap-0 gap-5">
               <a
-                href="#"
+                href="#contact"
                 className="inline-flex items-center justify-center h-14 px-8 py-0 text-base font-semibold text-center text-white no-underline align-middle transition-all duration-300 ease-in-out bg-transparent  bg-gray-950 hover:border-2 border-gray-950 border-2 hover:bg-black border-solid  cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline"
               >
                 Contact
@@ -158,7 +184,10 @@ const Home = () => {
       </section>
 
       {/* services section */}
-      <section className="bg-black text-white lg:p-16 p-5 py-24 px-10" id="services">
+      <section
+        className="bg-black text-white lg:p-16 p-5 py-24 px-10"
+        id="services"
+      >
         <h2 className="font-libre text-4xl font-semibold mb-6">My services</h2>
         <div className="flex flex-col">
           {portfolio.user?.services.map((service, index) => (
@@ -310,7 +339,7 @@ const Home = () => {
 
       {/* projects section */}
       <div className="border-b-gray-900 border-b" id="projects">
-        <section className="bg-black text-white lg:p-16 p-5 py-26 mb-10">
+        <section className="bg-black text-white lg:p-16 p-5 py-26">
           <h2 className="font-libre font-semibold text-4xl mb-8">
             My Recent Works
           </h2>
@@ -324,7 +353,7 @@ const Home = () => {
                     alt=""
                     className="w-full h-auto  filter brightness-100 hover:brightness-75"
                   />
-                  <div className="absolute inset-0 duration-500 flex items-center justify-center opacity-0 transition bg-gray-800 h-[82%]  hover:opacity-75">
+                  <div className="absolute inset-0 duration-500 flex items-center justify-center opacity-0 transition bg-gray-800 h-[83%]  hover:opacity-75">
                     <a
                       href="#"
                       className="inline-flex items-center justify-center h-14 px-8 py-0 text-base font-semibold text-center text-white no-underline align-middle transition-all duration-300 ease-in-out hover:bg-transparent  hover:border-2 bg-black border-black border-2  border-solid  cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline"
@@ -343,33 +372,118 @@ const Home = () => {
       </div>
 
       {/* review section */}
-      <section className="bg-black text-white lg:p-16 p-5 py-24 px-10" id="reviews">
-  <div className="slider-container">
-    <Slider {...settings}>
-      {portfolio.user?.testimonials.map((testimonial, index) => (
-        <div key={index} className="mb-4 mt-12">
-          <h2 className="font-libre font-semibold lg:text-4xl text-xl">
-            " {testimonial.review} "
-          </h2>
-          <div className="flex justify-start items-center mt-6">
-            <img
-              className="w-48 lg:w-[500px]"
-              src={testimonial.image.url}
-              alt=""
-            />
-            <div className="">
-              <h2 className="font-libre">{testimonial.name}</h2>
-              <p className="text-slate-300 font-roboto">
-                {testimonial.position}
-              </p>
-            </div>
+      <div className="border-b-gray-900 border-b" id="reviews">
+        <section className="bg-black text-white lg:p-16 p-5 py-24 px-10">
+          <div className="slider-container">
+            <Slider {...settings}>
+              {portfolio.user?.testimonials.map((testimonial, index) => (
+                <div key={index} className="mb-4 mt-12">
+                  <h2 className="font-libre font-semibold lg:text-4xl text-xl">
+                    " {testimonial.review} "
+                  </h2>
+                  <div className="flex justify-start items-center mt-6">
+                    <img
+                      className="w-48 lg:w-[500px]"
+                      src={testimonial.image.url}
+                      alt=""
+                    />
+                    <div className="">
+                      <h2 className="font-libre">{testimonial.name}</h2>
+                      <p className="text-slate-300 font-roboto">
+                        {testimonial.position}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </Slider>
+          </div>
+        </section>
+      </div>
+
+      {/* contact section */}
+      <section
+        className="bg-black text-white lg:p-16 lg: p-5 py-26 mb-10 mt-3"
+        id="contact"
+      >
+        <h2 className="font-libre font-semibold text-4xl lg:text-6xl mb-8">
+          Get In Touch
+        </h2>
+
+        <div className="flex justify-start flex-col lg:flex-row lg:gap-20 lg:items-center">
+          <div className="flex flex-col lg:flex-row justify-start lg:w-1/2 ">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-4 w-full font-roboto"
+            >
+              <div>
+                <input
+                  type="text"
+                  id="name"
+                  value={name}
+                  onChange={handleNameChange}
+                  className="w-full border bg-black  border-gray-950 p-3 rounded-none"
+                  required
+                  placeholder="Name"
+                />
+              </div>
+              <div>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={handleEmailChange}
+                  className="w-full border bg-black  border-gray-950 p-3 rounded-none"
+                  required
+                  placeholder="Email"
+                />
+              </div>
+              <div>
+                <textarea
+                  id="message"
+                  value={message}
+                  onChange={handleMessageChange}
+                  className="w-full border  bg-black  border-gray-950 p-3 rounded-none h-40"
+                  required
+                  placeholder="Message"
+                ></textarea>
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  href="#"
+                  className="font-roboto w-full inline-flex items-center justify-center h-14 px-8 py-0 text-base font-semibold text-center text-white no-underline align-middle transition-all duration-300 ease-in-out bg-transparent  bg-gray-950 hover:border-2 border-gray-950 border-2 hover:bg-black border-solid  cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline"
+                >
+                  Get A Quote
+                </button>
+              </div>
+            </form>
+          </div>
+          <div className="flex flex-col justify-start space-y-16 mt-8 lg:mt-0 lg:w-1/2">
+                <div className="flex justify-center lg:justify-start items-center gap-4 border-b-gray-900 border-b pb-8 w-full">
+                  <h2 ><FaPhoneVolume className="text-5xl" /></h2>
+                  <div>
+                  <h2 className="font-libre text-lg text-gray-300">Phone Number</h2>
+                  <p className="font-libre text-lg text-gray-300">{portfolio.user?.about.phoneNumber}</p>
+                  </div>
+                </div>
+                <div className="flex justify-center lg:justify-start items-center gap-4 border-b-gray-900 border-b pb-8">
+                  <h2 ><FaHouseUser className="text-5xl" /></h2>
+                  <div>
+                  <p className="font-libre text-lg text-gray-300">{portfolio.user?.about.address}</p>
+                  </div>
+                </div>
+                <div className="flex justify-center lg:justify-start items-center gap-4">
+                  <h2 ><BsMailbox2Flag className="text-5xl" /></h2>
+                  <div>
+                  <h2 className="font-libre text-lg text-gray-300">Email</h2>
+                  <p className="font-libre text-lg text-gray-300">{portfolio.user?.email}</p>
+                  </div>
+                </div>
+                
           </div>
         </div>
-      ))}
-    </Slider>
-  </div>
-</section>
-
+      </section>
     </div>
   );
 };
