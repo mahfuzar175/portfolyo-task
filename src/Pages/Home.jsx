@@ -453,13 +453,18 @@ const Home = () => {
                                           </span>
                                         </h2>
                                       </div>
-                                      <p className="font-libre text-base text-gray-400 font-bold mr-2 lg:mt-0 mt-3">
-                                        {item.company_name}
+                                      <p className="font-libre text-base font-bold mr-2 lg:mt-0 mt-3">
+                                        <span className="text-gray-400">{item.company_name}</span> <span>({item.jobLocation})</span>
                                       </p>
                                     </div>
                                   </div>
                                   <div className="mt-2">
                                     <p className="font-roboto">
+                                      {item.summary}
+                                    </p>
+                                  </div>
+                                  <div className="mt-2">
+                                    <p className="font-roboto text-gray-400">
                                       {item.bulletPoints}
                                     </p>
                                   </div>
@@ -483,7 +488,7 @@ const Home = () => {
                       {portfolio.user?.timeline.slice(3, 6).map(
                         (
                           item,
-                          index // Use slice to get the first 3 items
+                          index 
                         ) => (
                           <li key={index}>
                             <div className="relative pb-8">
@@ -532,13 +537,18 @@ const Home = () => {
                                           </span>
                                         </h2>
                                       </div>
-                                      <p className="font-libre text-base text-gray-400 font-bold mr-2 lg:mt-0 mt-3">
-                                        {item.company_name}
+                                      <p className="font-libre text-base font-bold mr-2 lg:mt-0 mt-3">
+                                        <span className="text-gray-400">{item.company_name}</span> <span>({item.jobLocation})</span>
                                       </p>
                                     </div>
                                   </div>
                                   <div className="mt-2">
                                     <p className="font-roboto">
+                                      {item.summary}
+                                    </p>
+                                  </div>
+                                  <div className="mt-2">
+                                    <p className="font-roboto text-gray-400">
                                       {item.bulletPoints}
                                     </p>
                                   </div>
