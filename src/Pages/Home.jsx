@@ -7,6 +7,7 @@ import { FaPhoneVolume } from "react-icons/fa6";
 import { BsMailbox2Flag } from "react-icons/bs";
 import { FaHouseUser } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
+import { FaArrowUp } from "react-icons/fa6";
 import { FaTwitter } from "react-icons/fa";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -480,10 +481,30 @@ const Home = () => {
                   <p className="font-libre text-lg text-gray-300">{portfolio.user?.email}</p>
                   </div>
                 </div>
-                
           </div>
         </div>
       </section>
+
+
+              {/* footer */}
+              <section>
+              <footer className="footer flex items-center justify-between p-4 font-libre text-gray-300 bg-black  border-t border-t-gray-900">
+  <aside className="items-center grid-flow-col">
+    
+    <p>Copyright & Design By John doe</p>
+  </aside> 
+  <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+  <a
+              href="#"
+              className="inline-flex items-center justify-center p-4 rounded-full font-semibold text-center text-white no-underline align-middle transition-all duration-300 ease-in-out bg-transparent  bg-gray-950 hover:border-2 border-gray-950 border-2 hover:bg-black border-solid  cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline"
+            >
+              
+              <FaArrowUp className="" />
+            </a>
+  </nav>
+</footer>
+              </section>
+
     </div>
   );
 };
