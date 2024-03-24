@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
-import { FaInstagram } from "react-icons/fa6";
-import { FaLinkedin } from "react-icons/fa6";
-import { FaFacebook } from "react-icons/fa";
+
 import { FaPhoneVolume } from "react-icons/fa6";
 import { BsMailbox2Flag } from "react-icons/bs";
 import { FaHouseUser } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { FaArrowUp } from "react-icons/fa6";
-import { FaTwitter } from "react-icons/fa";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import "slick-carousel/slick/slick.css";
@@ -62,8 +59,22 @@ const Home = () => {
     // Handle form submission logic here
   };
 
+  const formatDate = (dateString) => {
+    // Parse the date string
+    const date = new Date(dateString);
+
+    // Format the date as desired
+    const options = {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    };
+
+    return date.toLocaleDateString("en-US", options);
+  };
+
   return (
-    <div className=" py-2 bg-black">
+    <div className=" pt-2 bg-black">
       {/* navbar section*/}
       <div className="drawer">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -99,13 +110,20 @@ const Home = () => {
                   <a href="#">Home</a>
                 </li>
                 <li>
-                  <a href="#services">Services</a>
-                </li>
-                <li>
                   <a href="#about">About</a>
                 </li>
                 <li>
+                  <a href="#services">Services</a>
+                </li>
+                <li>
+                  <a href="#skills">Skills</a>
+                </li>
+
+                <li>
                   <a href="#projects">Project</a>
+                </li>
+                <li>
+                  <a href="#timeline">Timeline</a>
                 </li>
                 <li>
                   <a href="#reviews">Review</a>
@@ -136,13 +154,20 @@ const Home = () => {
               <a href="#">Home</a>
             </li>
             <li>
-              <a href="#services">Services</a>
-            </li>
-            <li>
               <a href="#about">About</a>
             </li>
             <li>
+              <a href="#services">Services</a>
+            </li>
+            <li>
+              <a href="#skills">Skills</a>
+            </li>
+
+            <li>
               <a href="#projects">Project</a>
+            </li>
+            <li>
+              <a href="#timeline">Timeline</a>
             </li>
             <li>
               <a href="#reviews">Review</a>
@@ -184,12 +209,70 @@ const Home = () => {
         </div>
       </section>
 
+      {/* about */}
+      <section
+        className="bg-black text-white lg:p-16 py-24 px-10  border-t border-b border-b-gray-900 border-t-gray-900  p-5"
+        id="about"
+      >
+        <h2 className="font-libre text-4xl font-semibold mb-3 mt-7 lg:mt-0 lg:px-16 px-0">
+          {portfolio.user?.about.name}
+        </h2>
+        <p className="font-libre text-lg mt-1 text-gray-400 lg:mt-0 lg:px-16 px-0">
+          {portfolio.user?.about.title}
+        </p>
+        <div className="flex flex-col lg:flex-row justify-start mb-6  mt-8 lg:mt-0 lg:py-14 lg:px-14">
+          <div className="lg:w-1/2 flex lg:justify-start lg:items-start items-center justify-center  ">
+            <img
+              className="w-96"
+              src={portfolio.user?.about.avatar.url}
+              alt=""
+            />
+          </div>
+          <div className="space-y-9 lg:w-1/2 mt-12 lg:mt-0">
+            <h1 className="font-semibold lg:text-5xl text-3xl font-libre">
+              {portfolio.user?.about.subTitle}
+            </h1>
+            <p className="font-roboto text-gray-400">
+              {portfolio.user?.about.description}
+            </p>
+            <div className="grid lg:grid-cols-2 gap-6">
+              <div className="text-lg">
+                <h2 className="font-roboto text-gray-400">Name</h2>
+                <p className="font-libre">{portfolio.user?.about.name}</p>
+              </div>
+              <div className="text-lg">
+                <h2 className="text-gray-400 font-roboto">Phone Number</h2>
+                <p className="font-libre">
+                  {portfolio.user?.about.phoneNumber}
+                </p>
+              </div>
+              <div className="text-lg">
+                <h2 className="text-gray-400 font-roboto">Email Address</h2>
+                <p className="font-libre">{portfolio.user?.email}</p>
+              </div>
+              <div className="text-lg">
+                <h2 className="text-gray-400 font-roboto">Social Networks</h2>
+                <div className="flex gap-4 font-libre  mt-1">
+                  {portfolio.user?.social_handles.map((social, index) => (
+                    <a href="#" key={index}>
+                      <img className="w-5" src={social.image.url} alt="" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* services section */}
       <section
         className="bg-black text-white lg:p-16 p-5 py-24 px-10"
         id="services"
       >
-        <h2 className="font-libre text-4xl font-semibold mb-6">My services</h2>
+        <h2 className="font-libre text-4xl font-semibold mb-6 lg:px-16 px-0">
+          My services
+        </h2>
         <div className="flex flex-col">
           {portfolio.user?.services.map((service, index) => (
             <div
@@ -223,118 +306,50 @@ const Home = () => {
         </div>
       </section>
 
-      {/* skill section */}
-      <section className="bg-black text-white lg:p-16  p-5" id="about">
-        <div className="px-12 border border-gray-900 py-12">
-          <Tabs>
-            <TabList className="text-center font-semibold text-lg font-libre mb-9">
-              <Tab>About Me</Tab>
-              <Tab>Skillset</Tab>
-            </TabList>
+      {/*  skills*/}
+      <section
+        className="bg-black text-white lg:p-16 py-24 px-10  border-t border-b border-b-gray-900 border-t-gray-900  mt-7 p-5"
+        id="skills"
+      >
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-24">
+          <div className="space-y-8 lg:w-1/2">
+            <div className="space-y-8">
+              <h2 className="font-libre text-4xl">My Skills</h2>
+              <p className="font-roboto">{portfolio.user?.about.subTitle}</p>
+            </div>
+            {/* progress */}
+            <div className="font-libre">
+              {portfolio.user?.skills
+                .sort((a, b) => a.sequence - b.sequence)
+                .map((skill, index) => (
+                  <div key={index} className="mb-4">
+                    <div className="flex justify-between items-center">
+                      <h3>{skill.name}</h3>
+                      <p>{skill.percentage}%</p>
+                    </div>
+                    <progress
+                      className="progress w-full progress-success"
+                      value={skill.percentage}
+                      max="100"
+                    ></progress>
+                  </div>
+                ))}
+            </div>
+          </div>
 
-            <TabPanel>
-              <div className="flex flex-col lg:flex-row justify-start gap-11">
-                <div className="lg:w-1/2">
+          <div>
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
+              {portfolio.user?.skills.map((skill, index) => (
+                <div key={index}>
                   <img
-                    className=""
-                    src={portfolio.user?.about.avatar.url}
+                    className="w-40 bg-gray-800 rounded-lg"
+                    src={skill.image.url}
                     alt=""
                   />
                 </div>
-                <div className="space-y-9 lg:w-1/2">
-                  <h1 className="font-semibold lg:text-5xl text-3xl font-libre">
-                    {portfolio.user?.about.subTitle}
-                  </h1>
-                  <p className="font-roboto text-gray-400">
-                    {portfolio.user?.about.description}
-                  </p>
-                  <div className="grid lg:grid-cols-2 gap-6">
-                    <div className="text-lg">
-                      <h2 className="font-roboto text-gray-400">Name</h2>
-                      <p className="font-libre">{portfolio.user?.about.name}</p>
-                    </div>
-                    <div className="text-lg">
-                      <h2 className="text-gray-400 font-roboto">
-                        Phone Number
-                      </h2>
-                      <p className="font-libre">
-                        {portfolio.user?.about.phoneNumber}
-                      </p>
-                    </div>
-                    <div className="text-lg">
-                      <h2 className="text-gray-400 font-roboto">
-                        Email Address
-                      </h2>
-                      <p className="font-libre">{portfolio.user?.email}</p>
-                    </div>
-                    <div className="text-lg">
-                      <h2 className="text-gray-400 font-roboto">
-                        Social Networks
-                      </h2>
-                      <div className="flex gap-4 font-libre  mt-1">
-                        <a href="#">
-                          <FaInstagram />
-                        </a>
-                        <a href="#">
-                          <FaLinkedin />
-                        </a>
-                        <a href="#">
-                          <FaTwitter />
-                        </a>
-                        <a href="#">
-                          <FaFacebook />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </TabPanel>
-            <TabPanel>
-              <div className="flex flex-col lg:flex-row justify-start gap-24">
-                <div className="space-y-8 lg:w-1/2">
-                  <div className="space-y-8">
-                    <h2 className="font-libre text-4xl">My Skills</h2>
-                    <p className="font-roboto">
-                      {portfolio.user?.about.subTitle}
-                    </p>
-                  </div>
-                  {/* progress */}
-                  <div className="font-libre">
-                    {portfolio.user?.skills
-                      .sort((a, b) => a.sequence - b.sequence)
-                      .map((skill, index) => (
-                        <div key={index} className="mb-4">
-                          <div className="flex justify-between items-center">
-                            <h3>{skill.name}</h3>
-                            <p>{skill.percentage}%</p>
-                          </div>
-                          <progress
-                            className="progress w-full progress-success"
-                            value={skill.percentage}
-                            max="100"
-                          ></progress>
-                        </div>
-                      ))}
-                  </div>
-                </div>
-
-                <div>
-                  <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
-                    {portfolio.user?.skills.map((skill, index) => (
-                      <div key={index}>
-                        <img
-                          className="w-40 bg-gray-800 rounded-lg"
-                          src={skill.image.url}
-                          alt=""
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </TabPanel>
-          </Tabs>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -371,6 +386,176 @@ const Home = () => {
           </div>
         </section>
       </div>
+
+      {/* education*/}
+      <section className="bg-black text-white lg:p-16  p-5" id="education">
+        <div className="px-12 border border-gray-900 py-12">
+          <Tabs>
+            <TabList className="text-center font-semibold text-lg font-libre mb-9">
+              <Tab>Education</Tab>
+              <Tab>Experiance</Tab>
+            </TabList>
+
+            <TabPanel>
+              <div className="bg-black">
+                <div className="max-w-4xl mx-auto p-8">
+                  <div className="flow-root">
+                    <ul className="-mb-8">
+                      {portfolio.user?.timeline.slice(0, 3).map(
+                        (
+                          item,
+                          index // Use slice to get the first 3 items
+                        ) => (
+                          <li key={index}>
+                            <div className="relative pb-8">
+                              <span
+                                className="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200"
+                                aria-hidden="true"
+                              ></span>
+                              <div className="relative flex items-start space-x-3">
+                                <div>
+                                  <div className="relative px-1">
+                                    <div className="h-8 w-8 bg-blue-500 rounded-full ring-8 ring-white flex items-center justify-center">
+                                      <svg
+                                        className="text-white h-5 w-5"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                      >
+                                        <path
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          strokeWidth="2"
+                                          d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                        />
+                                      </svg>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="min-w-0 flex-1 py-0">
+                                  <div className="text-md">
+                                    <div>
+                                      <div className="flex flex-col lg:flex-row justify-between lg:items-center space-y-3 lg:space-y-0">
+                                        <a
+                                          href="#"
+                                          className="font-libre lg:text-2xl text-xl font-semibold mr-2"
+                                        >
+                                          {item.jobTitle}
+                                        </a>
+                                        <h2 className="font-libre text-xs font-semibold mr-2">
+                                          <span>
+                                            {formatDate(item.startDate)}
+                                          </span>{" "}
+                                          -{" "}
+                                          <span>
+                                            {formatDate(item.endDate)}
+                                          </span>
+                                        </h2>
+                                      </div>
+                                      <p className="font-libre text-base text-gray-400 font-bold mr-2 lg:mt-0 mt-3">
+                                        {item.company_name}
+                                      </p>
+                                    </div>
+                                  </div>
+                                  <div className="mt-2">
+                                    <p className="font-roboto">
+                                      {item.bulletPoints}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        )
+                      )}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </TabPanel>
+
+            <TabPanel>
+              <div className="bg-black">
+                <div className="max-w-4xl mx-auto p-8">
+                  <div className="flow-root">
+                    <ul className="-mb-8">
+                      {portfolio.user?.timeline.slice(3, 6).map(
+                        (
+                          item,
+                          index // Use slice to get the first 3 items
+                        ) => (
+                          <li key={index}>
+                            <div className="relative pb-8">
+                              <span
+                                className="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200"
+                                aria-hidden="true"
+                              ></span>
+                              <div className="relative flex items-start space-x-3">
+                                <div>
+                                  <div className="relative px-1">
+                                    <div className="h-8 w-8 bg-blue-500 rounded-full ring-8 ring-white flex items-center justify-center">
+                                      <svg
+                                        className="text-white h-5 w-5"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                      >
+                                        <path
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          strokeWidth="2"
+                                          d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                        />
+                                      </svg>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="min-w-0 flex-1 py-0">
+                                  <div className="text-md">
+                                    <div>
+                                      <div className="flex flex-col lg:flex-row justify-between lg:items-center space-y-3 lg:space-y-0">
+                                        <a
+                                          href="#"
+                                          className="font-libre lg:text-2xl text-xl font-semibold mr-2"
+                                        >
+                                          {item.jobTitle}
+                                        </a>
+                                        <h2 className="font-libre text-xs font-semibold mr-2">
+                                          <span>
+                                            {formatDate(item.startDate)}
+                                          </span>{" "}
+                                          -{" "}
+                                          <span>
+                                            {formatDate(item.endDate)}
+                                          </span>
+                                        </h2>
+                                      </div>
+                                      <p className="font-libre text-base text-gray-400 font-bold mr-2 lg:mt-0 mt-3">
+                                        {item.company_name}
+                                      </p>
+                                    </div>
+                                  </div>
+                                  <div className="mt-2">
+                                    <p className="font-roboto">
+                                      {item.bulletPoints}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        )
+                      )}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </TabPanel>
+          </Tabs>
+        </div>
+      </section>
 
       {/* review section */}
       <div className="border-b-gray-900 border-b" id="reviews">
@@ -461,50 +646,59 @@ const Home = () => {
             </form>
           </div>
           <div className="flex flex-col justify-start space-y-16 mt-8 lg:mt-0 lg:w-1/2">
-                <div className="flex justify-center lg:justify-start items-center gap-4 border-b-gray-900 border-b pb-8 w-full">
-                  <h2 ><FaPhoneVolume className="text-5xl" /></h2>
-                  <div>
-                  <h2 className="font-libre text-lg text-gray-300">Phone Number</h2>
-                  <p className="font-libre text-lg text-gray-300">{portfolio.user?.about.phoneNumber}</p>
-                  </div>
-                </div>
-                <div className="flex justify-center lg:justify-start items-center gap-4 border-b-gray-900 border-b pb-8">
-                  <h2 ><FaHouseUser className="text-5xl" /></h2>
-                  <div>
-                  <p className="font-libre text-lg text-gray-300">{portfolio.user?.about.address}</p>
-                  </div>
-                </div>
-                <div className="flex justify-center lg:justify-start items-center gap-4">
-                  <h2 ><BsMailbox2Flag className="text-5xl" /></h2>
-                  <div>
-                  <h2 className="font-libre text-lg text-gray-300">Email</h2>
-                  <p className="font-libre text-lg text-gray-300">{portfolio.user?.email}</p>
-                  </div>
-                </div>
+            <div className="flex justify-center lg:justify-start items-center gap-4 border-b-gray-900 border-b pb-8 w-full">
+              <h2>
+                <FaPhoneVolume className="text-5xl" />
+              </h2>
+              <div>
+                <h2 className="font-libre text-lg text-gray-300">
+                  Phone Number
+                </h2>
+                <p className="font-libre text-lg text-gray-300">
+                  {portfolio.user?.about.phoneNumber}
+                </p>
+              </div>
+            </div>
+            <div className="flex justify-center lg:justify-start items-center gap-4 border-b-gray-900 border-b pb-8">
+              <h2>
+                <FaHouseUser className="text-5xl" />
+              </h2>
+              <div>
+                <p className="font-libre text-lg text-gray-300">
+                  {portfolio.user?.about.address}
+                </p>
+              </div>
+            </div>
+            <div className="flex justify-center lg:justify-start items-center gap-4">
+              <h2>
+                <BsMailbox2Flag className="text-5xl" />
+              </h2>
+              <div>
+                <h2 className="font-libre text-lg text-gray-300">Email</h2>
+                <p className="font-libre text-lg text-gray-300">
+                  {portfolio.user?.email}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* footer */}
 
-              {/* footer */}
-              <section>
-              <footer className="footer flex items-center justify-between p-4 font-libre text-gray-300 bg-black  border-t border-t-gray-900">
-  <aside className="items-center grid-flow-col">
-    
-    <p>Copyright & Design By John doe</p>
-  </aside> 
-  <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-  <a
-              href="#"
-              className="inline-flex items-center justify-center p-4 rounded-full font-semibold text-center text-white no-underline align-middle transition-all duration-300 ease-in-out bg-transparent  bg-gray-950 hover:border-2 border-gray-950 border-2 hover:bg-black border-solid  cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline"
-            >
-              
-              <FaArrowUp className="" />
-            </a>
-  </nav>
-</footer>
-              </section>
-
+      <footer className="footer flex items-center justify-between p-4 font-libre text-gray-300 bg-black  border-t border-t-gray-900">
+        <aside className="items-center grid-flow-col">
+          <p>Copyright & Design By John doe</p>
+        </aside>
+        <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+          <a
+            href="#"
+            className="inline-flex items-center justify-center p-4 rounded-full font-semibold text-center text-white no-underline align-middle transition-all duration-300 ease-in-out bg-transparent  bg-gray-950 hover:border-2 border-gray-950 border-2 hover:bg-black border-solid  cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline"
+          >
+            <FaArrowUp className="" />
+          </a>
+        </nav>
+      </footer>
     </div>
   );
 };
