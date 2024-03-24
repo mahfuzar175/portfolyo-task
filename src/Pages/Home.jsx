@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
-
+import { IoMdDownload } from "react-icons/io";
 import { FaPhoneVolume } from "react-icons/fa6";
 import { BsMailbox2Flag } from "react-icons/bs";
 import { FaHouseUser } from "react-icons/fa";
@@ -123,7 +123,7 @@ const Home = () => {
                   <a href="#projects">Project</a>
                 </li>
                 <li>
-                  <a href="#timeline">Timeline</a>
+                  <a href="#timeline">Resume</a>
                 </li>
                 <li>
                   <a href="#reviews">Review</a>
@@ -167,7 +167,7 @@ const Home = () => {
               <a href="#projects">Project</a>
             </li>
             <li>
-              <a href="#timeline">Timeline</a>
+              <a href="#timeline">Resume</a>
             </li>
             <li>
               <a href="#reviews">Review</a>
@@ -388,8 +388,8 @@ const Home = () => {
       </div>
 
       {/* education*/}
-      <section className="bg-black text-white lg:p-16  p-5" id="education">
-        <div className="px-12 border border-gray-900 py-12">
+      <section className="bg-black text-white lg:p-16  p-5" id="timeline">
+        <div className="px-12 border border-gray-900 py-12 mt-8">
           <Tabs>
             <TabList className="text-center font-semibold text-lg font-libre mb-9">
               <Tab>Education</Tab>
@@ -564,6 +564,16 @@ const Home = () => {
               </div>
             </TabPanel>
           </Tabs>
+
+          <div className="flex justify-center items-center mt-9">
+          <a
+              href="#contact"
+              className="inline-flex items-center justify-center h-14 px-8 py-0 text-base font-semibold text-center text-white no-underline align-middle transition-all duration-300 ease-in-out bg-transparent  bg-gray-950 hover:border-2 border-gray-950 border-2 hover:bg-black border-solid  cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline"
+            >
+              Download CV
+              <IoMdDownload className="ml-2 mt-1" />
+            </a>
+          </div>
         </div>
       </section>
 
