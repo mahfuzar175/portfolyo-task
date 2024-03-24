@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link, animateScroll as scroll } from "react-scroll";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { IoMdDownload } from "react-icons/io";
 import { FaPhoneVolume } from "react-icons/fa6";
@@ -106,37 +107,94 @@ const Home = () => {
             <div className="flex-none hidden lg:block lg:mr-4">
               <ul className="menu menu-horizontal font-roboto text-base gap-4">
                 {/* Navbar menu content here */}
-                <li>
-                  <a href="#">Home</a>
+                <li className="hover:border hover:border-white border border-black">
+                  <Link
+                    activeClass="active"
+                    to="hero"
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                  >
+                    Home
+                  </Link>
                 </li>
-                <li>
-                  <a href="#about">About</a>
+                <li className="hover:border hover:border-white border border-black">
+                  <Link
+                    activeClass="active"
+                    to="about"
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                  >
+                    About
+                  </Link>
                 </li>
-                <li>
-                  <a href="#services">Services</a>
+                <li className="hover:border hover:border-white border border-black">
+                  <Link
+                    activeClass="active"
+                    to="services"
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                  >
+                    Services
+                  </Link>
                 </li>
-                <li>
-                  <a href="#skills">Skills</a>
+                <li className="hover:border hover:border-white border border-black">
+                  <Link
+                    activeClass="active"
+                    to="skills"
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                  >
+                    Skills
+                  </Link>
                 </li>
-
-                <li>
-                  <a href="#projects">Project</a>
+                <li className="hover:border hover:border-white border border-black">
+                  <Link
+                    activeClass="active"
+                    to="projects"
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                  >
+                    Project
+                  </Link>
                 </li>
-                <li>
-                  <a href="#timeline">Resume</a>
+                <li className="hover:border hover:border-white border border-black">
+                  <Link
+                    activeClass="active"
+                    to="timeline"
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                  >
+                    Resume
+                  </Link>
                 </li>
-                <li>
-                  <a href="#reviews">Review</a>
+                <li className="hover:border hover:border-white border border-black">
+                  <Link
+                    activeClass="active"
+                    to="reviews"
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                  >
+                    Review
+                  </Link>
                 </li>
               </ul>
             </div>
-            <a
-              href="#contact"
+            <Link
+              to="contact"
+              smooth={true}
+              duration={500}
               className="inline-flex items-center justify-center h-14 px-8 py-0 text-base font-semibold text-center text-white no-underline align-middle transition-all duration-300 ease-in-out bg-transparent  bg-gray-950 hover:border-2 border-gray-950 border-2 hover:bg-black border-solid  cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline"
             >
               Contact
               <FaArrowRightLong className="ml-2 mt-1" />
-            </a>
+            </Link>
           </div>
         </div>
         <div
@@ -150,26 +208,26 @@ const Home = () => {
           ></label>
           <ul className="menu p-4 w-80 min-h-full bg-black text-white font-roboto text-base">
             {/* Sidebar content here */}
-            <li>
+            <li className="hover:border hover:border-white border border-black">
               <a href="#">Home</a>
             </li>
-            <li>
+            <li className="hover:border hover:border-white border border-black">
               <a href="#about">About</a>
             </li>
-            <li>
+            <li className="hover:border hover:border-white border border-black">
               <a href="#services">Services</a>
             </li>
-            <li>
+            <li className="hover:border hover:border-white border border-black">
               <a href="#skills">Skills</a>
             </li>
 
-            <li>
+            <li className="hover:border hover:border-white border border-black">
               <a href="#projects">Project</a>
             </li>
-            <li>
+            <li className="hover:border hover:border-white border border-black">
               <a href="#timeline">Resume</a>
             </li>
-            <li>
+            <li className="hover:border hover:border-white border border-black">
               <a href="#reviews">Review</a>
             </li>
           </ul>
@@ -387,7 +445,7 @@ const Home = () => {
         </section>
       </div>
 
-      {/* education*/}
+      {/* timeline section*/}
       <section className="bg-black text-white lg:p-16  p-5" id="timeline">
         <div className="px-12 border border-gray-900 py-12 mt-8">
           <Tabs>
@@ -401,11 +459,9 @@ const Home = () => {
                 <div className="max-w-4xl mx-auto p-8">
                   <div className="flow-root">
                     <ul className="-mb-8">
-                      {portfolio.user?.timeline.slice(0, 3).map(
-                        (
-                          item,
-                          index // Use slice to get the first 3 items
-                        ) => (
+                      {portfolio.user?.timeline
+                        .filter((item) => item.forEducation === true)
+                        .map((item, index) => (
                           <li key={index}>
                             <div className="relative pb-8">
                               <span
@@ -454,7 +510,10 @@ const Home = () => {
                                         </h2>
                                       </div>
                                       <p className="font-libre text-base font-bold mr-2 lg:mt-0 mt-3">
-                                        <span className="text-gray-400">{item.company_name}</span> <span>({item.jobLocation})</span>
+                                        <span className="text-gray-400">
+                                          {item.company_name}
+                                        </span>{" "}
+                                        <span>({item.jobLocation})</span>
                                       </p>
                                     </div>
                                   </div>
@@ -472,8 +531,7 @@ const Home = () => {
                               </div>
                             </div>
                           </li>
-                        )
-                      )}
+                        ))}
                     </ul>
                   </div>
                 </div>
@@ -485,11 +543,9 @@ const Home = () => {
                 <div className="max-w-4xl mx-auto p-8">
                   <div className="flow-root">
                     <ul className="-mb-8">
-                      {portfolio.user?.timeline.slice(3, 6).map(
-                        (
-                          item,
-                          index 
-                        ) => (
+                      {portfolio.user?.timeline
+                        .filter((item) => item.forEducation === false)
+                        .map((item, index) => (
                           <li key={index}>
                             <div className="relative pb-8">
                               <span
@@ -538,7 +594,10 @@ const Home = () => {
                                         </h2>
                                       </div>
                                       <p className="font-libre text-base font-bold mr-2 lg:mt-0 mt-3">
-                                        <span className="text-gray-400">{item.company_name}</span> <span>({item.jobLocation})</span>
+                                        <span className="text-gray-400">
+                                          {item.company_name}
+                                        </span>{" "}
+                                        <span>({item.jobLocation})</span>
                                       </p>
                                     </div>
                                   </div>
@@ -556,8 +615,7 @@ const Home = () => {
                               </div>
                             </div>
                           </li>
-                        )
-                      )}
+                        ))}
                     </ul>
                   </div>
                 </div>
@@ -566,7 +624,7 @@ const Home = () => {
           </Tabs>
 
           <div className="flex justify-center items-center mt-9">
-          <a
+            <a
               href="#contact"
               className="inline-flex items-center justify-center h-14 px-8 py-0 text-base font-semibold text-center text-white no-underline align-middle transition-all duration-300 ease-in-out bg-transparent  bg-gray-950 hover:border-2 border-gray-950 border-2 hover:bg-black border-solid  cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline"
             >
@@ -713,9 +771,10 @@ const Home = () => {
         <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
           <a
             href="#"
-            className="inline-flex items-center justify-center p-4 rounded-full font-semibold text-center text-white no-underline align-middle transition-all duration-300 ease-in-out bg-transparent  bg-gray-950 hover:border-2 border-gray-950 border-2 hover:bg-black border-solid  cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline"
+            onClick={() => scroll.scrollToTop({ smooth: true, duration: 500 })}
+            className="inline-flex items-center justify-center p-4 rounded-full font-semibold text-center text-white no-underline align-middle transition-all duration-300 ease-in-out bg-transparent bg-gray-950 hover:border-2 border-gray-950 border-2 hover:bg-black border-solid cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline"
           >
-            <FaArrowUp className="" />
+            <FaArrowUp />
           </a>
         </nav>
       </footer>
