@@ -7,6 +7,10 @@ import { FaGithub } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+
 const Home = () => {
   const [portfolio, setPortfolio] = useState([]);
 
@@ -22,6 +26,14 @@ const Home = () => {
         setPortfolio(data);
       });
   }, []);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1
+  };
 
   return (
     <div className=" py-2 bg-black">
@@ -146,7 +158,7 @@ const Home = () => {
       </section>
 
       {/* services section */}
-      <section className="bg-black text-white lg:p-16 p-5 py-24 px-10">
+      <section className="bg-black text-white lg:p-16 p-5 py-24 px-10" id="services">
         <h2 className="font-libre text-4xl font-semibold mb-6">My services</h2>
         <div className="flex flex-col">
           {portfolio.user?.services.map((service, index) => (
@@ -331,33 +343,33 @@ const Home = () => {
       </div>
 
       {/* review section */}
-      <section
-        className="bg-black text-white lg:p-16 p-5  py-24 px-10"
-        id="reviews"
-      >
-        <div className="mt-12">
-          {portfolio.user?.testimonials.map((testimonial, index) => (
-            <div key={index} className="mb-4 mt-12">
-              <h2 className="font-libre font-semibold lg:text-4xl text-xl">
-                " {testimonial.review} "
-              </h2>
-              <div className="flex justify-start items-center mt-6">
-                <img
-                  className="hidden lg:block"
-                  src={testimonial.image.url}
-                  alt=""
-                />
-                <div>
-                  <h2 className="font-libre">{testimonial.name}</h2>
-                  <p className="text-slate-300 font-roboto">
-                    {testimonial.position}
-                  </p>
-                </div>
-              </div>
+      <section className="bg-black text-white lg:p-16 p-5 py-24 px-10" id="reviews">
+  <div className="slider-container">
+    <Slider {...settings}>
+      {portfolio.user?.testimonials.map((testimonial, index) => (
+        <div key={index} className="mb-4 mt-12">
+          <h2 className="font-libre font-semibold lg:text-4xl text-xl">
+            " {testimonial.review} "
+          </h2>
+          <div className="flex justify-start items-center mt-6">
+            <img
+              className="w-48 lg:w-[500px]"
+              src={testimonial.image.url}
+              alt=""
+            />
+            <div className="">
+              <h2 className="font-libre">{testimonial.name}</h2>
+              <p className="text-slate-300 font-roboto">
+                {testimonial.position}
+              </p>
             </div>
-          ))}
+          </div>
         </div>
-      </section>
+      ))}
+    </Slider>
+  </div>
+</section>
+
     </div>
   );
 };
