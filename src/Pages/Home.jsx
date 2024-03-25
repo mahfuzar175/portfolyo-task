@@ -5,7 +5,6 @@ import { IoMdDownload } from "react-icons/io";
 import { FaPhoneVolume } from "react-icons/fa6";
 import { BsMailbox2Flag } from "react-icons/bs";
 import { FaHouseUser } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
 import { FaArrowUp } from "react-icons/fa6";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -78,13 +77,13 @@ const Home = () => {
   };
 
   return (
-    <div className="bg-black">
+    <div className="bg-black" id="home">
       {/* navbar section*/}
       <div className="drawer">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
           {/* Navbar */}
-          <div className="w-full p-4 fixed z-50 navbar bg-black text-white px-10">
+          <div className="w-full p-4 fixed z-30 navbar bg-black text-white px-10">
             <div className="flex-none lg:hidden">
               <label
                 htmlFor="my-drawer-3"
@@ -112,8 +111,8 @@ const Home = () => {
                 {/* Navbar menu content here */}
                 <li className="hover:border hover:border-white border border-black">
                   <Link
-                    activeClass="active"
-                    to="hero"
+                    activeClass="none"
+                    to="home"
                     spy={true}
                     smooth={true}
                     duration={500}
@@ -123,7 +122,7 @@ const Home = () => {
                 </li>
                 <li className="hover:border hover:border-white border border-black">
                   <Link
-                    activeClass="active"
+                    activeClass="none"
                     to="about"
                     spy={true}
                     smooth={true}
@@ -134,7 +133,7 @@ const Home = () => {
                 </li>
                 <li className="hover:border hover:border-white border border-black">
                   <Link
-                    activeClass="active"
+                    activeClass="none"
                     to="services"
                     spy={true}
                     smooth={true}
@@ -145,7 +144,7 @@ const Home = () => {
                 </li>
                 <li className="hover:border hover:border-white border border-black">
                   <Link
-                    activeClass="active"
+                    activeClass="none"
                     to="skills"
                     spy={true}
                     smooth={true}
@@ -156,7 +155,7 @@ const Home = () => {
                 </li>
                 <li className="hover:border hover:border-white border border-black">
                   <Link
-                    activeClass="active"
+                    activeClass="none"
                     to="projects"
                     spy={true}
                     smooth={true}
@@ -167,7 +166,7 @@ const Home = () => {
                 </li>
                 <li className="hover:border hover:border-white border border-black">
                   <Link
-                    activeClass="active"
+                    activeClass="none"
                     to="timeline"
                     spy={true}
                     smooth={true}
@@ -178,7 +177,7 @@ const Home = () => {
                 </li>
                 <li className="hover:border hover:border-white border border-black">
                   <Link
-                    activeClass="active"
+                    activeClass="none"
                     to="reviews"
                     spy={true}
                     smooth={true}
@@ -212,33 +211,91 @@ const Home = () => {
           <ul className="menu p-4 w-80 min-h-full bg-black text-white font-roboto text-base">
             {/* Sidebar content here */}
             <li className="hover:border hover:border-white border border-black">
-              <a href="#">Home</a>
+              <Link
+                activeClass="none"
+                to="home"
+                spy={true}
+                smooth={true}
+                duration={500}
+              >
+                Home
+              </Link>
             </li>
             <li className="hover:border hover:border-white border border-black">
-              <a href="#about">About</a>
+              <Link
+                activeClass="none"
+                to="about"
+                spy={true}
+                smooth={true}
+                duration={500}
+              >
+                About
+              </Link>
             </li>
             <li className="hover:border hover:border-white border border-black">
-              <a href="#services">Services</a>
+              <Link
+                activeClass="none"
+                to="services"
+                spy={true}
+                smooth={true}
+                duration={500}
+              >
+                Services
+              </Link>
             </li>
             <li className="hover:border hover:border-white border border-black">
-              <a href="#skills">Skills</a>
+              <Link
+                activeClass="none"
+                to="skills"
+                spy={true}
+                smooth={true}
+                duration={500}
+              >
+                Skills
+              </Link>
             </li>
-
             <li className="hover:border hover:border-white border border-black">
-              <a href="#projects">Project</a>
+              <Link
+                activeClass="none"
+                to="projects"
+                spy={true}
+                smooth={true}
+                duration={500}
+              >
+                Project
+              </Link>
             </li>
             <li className="hover:border hover:border-white border border-black">
-              <a href="#timeline">Resume</a>
+              <Link
+                activeClass="none"
+                to="timeline"
+                spy={true}
+                smooth={true}
+                duration={500}
+              >
+                Resume
+              </Link>
             </li>
             <li className="hover:border hover:border-white border border-black">
-              <a href="#reviews">Review</a>
+              <Link
+                activeClass="none"
+                to="reviews"
+                spy={true}
+                smooth={true}
+                duration={500}
+              >
+                Review
+              </Link>
             </li>
           </ul>
         </div>
       </div>
 
       {/* hero section */}
-      <section className="bg-black text-white lg:p-16 mt-16 p-5 py-24 px-10">
+      <section
+        className="bg-black text-white lg:p-16 mt-16 p-5 py-24 px-10"
+        id="hero"
+      >
         <div className="flex lg:flex-row justify-between items-center lg:text-left text-center gap-8 flex-col-reverse">
           <div className="w-1/2 space-y-6">
             <div data-aos="fade-down" data-aos-duration="2000">
@@ -280,7 +337,7 @@ const Home = () => {
 
       {/* about */}
       <section
-        className="bg-black text-white lg:p-16 py-24 px-10 border-t border-b border-b-gray-900 border-t-gray-900 p-5"
+        className="bg-black text-white lg:p-16  py-24 px-10 border-t border-b border-b-gray-900 border-t-gray-900 p-5"
         id="about"
       >
         <h2 className="font-libre text-4xl font-semibold mb-3 mt-7 lg:mt-0 lg:px-16 px-0">
@@ -475,12 +532,46 @@ const Home = () => {
                   />
                   <div className="absolute inset-0 duration-500 flex items-center justify-center opacity-0 transition bg-gray-800 h-[83%]  hover:opacity-75">
                     <a
-                      href="#"
+                      onClick={() =>
+                        document.getElementById(`my_modal_${index}`).showModal()
+                      }
                       className="inline-flex items-center justify-center h-14 px-8 py-0 text-base font-semibold text-center text-white no-underline align-middle transition-all duration-300 ease-in-out hover:bg-transparent  hover:border-2 bg-black border-black border-2  border-solid  cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline"
                     >
-                      View Code
-                      <FaGithub className="ml-2 mt-1" />
+                      View Details
                     </a>
+                    <dialog id={`my_modal_${index}`} className="modal">
+                      <div className="modal-box bg-white text-black rounded-none w-full">
+                        <img src={project.image.url} alt="" />
+                        <h2 className="py-2 font-libre font-bold text-xl">
+                          Project {project.sequence}
+                        </h2>
+                        <p className="font-roboto">{project.description}</p>
+                        <h2 className="font-libre font-bold">Tech Stack</h2>
+                        <p>{project.techStack.join(", ")}</p>
+                        <h2 className="font-libre font-bold">Live URL</h2>
+                        <a href={project.liveurl}>{project.liveurl}</a>
+                        <h2 className="font-libre font-bold">GitHub URL</h2>
+                        <a href={project.githuburl}>{project.githuburl}</a>
+
+                        <div className="modal-action">
+                          <a
+                            onClick={() =>
+                              document
+                                .getElementById(`my_modal_${index}`)
+                                .close()
+                            }
+                            href="#_"
+                            className="relative inline-block px-4 py-2 font-medium group"
+                          >
+                            <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                            <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                            <span className="relative text-black group-hover:text-white">
+                              Close
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </dialog>
                   </div>
                   <div className="relative text-center font-libre text-3xl mt-4  cursor-pointer transition-all ease-in-out before:transition-[width] before:ease-in-out before:duration-700 before:absolute before:bg-white before:origin-center before:h-[1px] before:w-0 hover:before:w-[50%] before:bottom-0 before:left-[50%] after:transition-[width] after:ease-in-out after:duration-700 after:absolute after:bg-white after:origin-center after:h-[1px] after:w-0 hover:after:w-[50%] after:bottom-0 after:right-[50%]">
                     <span className="">Project {project.sequence}</span>
