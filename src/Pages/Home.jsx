@@ -78,13 +78,13 @@ const Home = () => {
   };
 
   return (
-    <div className=" pt-2 bg-black">
+    <div className="bg-black">
       {/* navbar section*/}
       <div className="drawer">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
           {/* Navbar */}
-          <div className="w-full navbar bg-black text-white px-10">
+          <div className="w-full p-4 fixed z-50 navbar bg-black text-white px-10">
             <div className="flex-none lg:hidden">
               <label
                 htmlFor="my-drawer-3"
@@ -238,12 +238,14 @@ const Home = () => {
       </div>
 
       {/* hero section */}
-      <section className="bg-black text-white lg:p-16 p-5  py-24 px-10">
+      <section className="bg-black text-white lg:p-16 mt-16 p-5 py-24 px-10">
         <div className="flex lg:flex-row justify-between items-center lg:text-left text-center gap-8 flex-col-reverse">
           <div className="w-1/2 space-y-6">
-            <h1 className="font-libre font-semibold xl:text-8xl lg:text-6xl text-4xl">
-              {portfolio.user?.about.title}
-            </h1>
+            <div data-aos="fade-down" data-aos-duration="2000">
+              <h1 className="font-libre font-semibold xl:text-8xl lg:text-6xl text-4xl">
+                {portfolio.user?.about.title}
+              </h1>
+            </div>
             <div className="flex flex-col lg:flex-row justify-center items-center lg:gap-0 gap-5">
               <a
                 href="#contact"
@@ -368,6 +370,8 @@ const Home = () => {
         <div className="flex flex-col">
           {portfolio.user?.services.map((service, index) => (
             <div
+              data-aos="fade-up"
+              data-aos-anchor-placement="top-bottom"
               key={index}
               className="border-t border-b border-collapse p-14 border-slate-900 group relative"
             >
@@ -410,7 +414,11 @@ const Home = () => {
               <p className="font-roboto">{portfolio.user?.about.subTitle}</p>
             </div>
             {/* progress */}
-            <div className="font-libre">
+            <div
+              data-aos="fade-down"
+              data-aos-duration="2000"
+              className="font-libre"
+            >
               {portfolio.user?.skills
                 .sort((a, b) => a.sequence - b.sequence)
                 .map((skill, index) => (
@@ -430,11 +438,15 @@ const Home = () => {
           </div>
 
           <div>
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
+            <div
+              data-aos="fade-up"
+              data-aos-duration="2000"
+              className="grid grid-cols-2 lg:grid-cols-3 gap-3"
+            >
               {portfolio.user?.skills.map((skill, index) => (
                 <div key={index}>
                   <img
-                    className="w-40 bg-gray-800 rounded-lg"
+                    className="w-40 bg-gray-800 rounded-lg transition-transform duration-300 hover:scale-95"
                     src={skill.image.url}
                     alt=""
                   />
@@ -709,7 +721,11 @@ const Home = () => {
         </h2>
 
         <div className="flex justify-start flex-col lg:flex-row lg:gap-20 lg:items-center">
-          <div className="flex flex-col lg:flex-row justify-start lg:w-1/2 ">
+          <div
+            data-aos="fade-up"
+            data-aos-duration="2000"
+            className="flex flex-col lg:flex-row justify-start lg:w-1/2 "
+          >
             <form
               onSubmit={handleSubmit}
               className="space-y-4 w-full font-roboto"
@@ -757,7 +773,11 @@ const Home = () => {
               </div>
             </form>
           </div>
-          <div className="flex flex-col justify-start space-y-16 mt-8 lg:mt-0 lg:w-1/2">
+          <div
+            data-aos="fade-down"
+            data-aos-duration="2000"
+            className="flex flex-col justify-start space-y-16 mt-8 lg:mt-0 lg:w-1/2"
+          >
             <div className="flex justify-center lg:justify-start items-center gap-4 border-b-gray-900 border-b pb-8 w-full">
               <h2>
                 <FaPhoneVolume className="text-5xl" />
