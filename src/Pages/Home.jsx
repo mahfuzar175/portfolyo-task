@@ -428,9 +428,10 @@ const Home = () => {
           {portfolio.user?.services.map((service, index) => (
             <div
               data-aos="fade-up"
-              data-aos-anchor-placement="top-bottom"
+            data-aos-duration="2000"
+ 
               key={index}
-              className="border-t border-b border-collapse p-14 border-slate-900 group relative"
+              className="border-b border-collapse p-14 border-slate-900 group relative"
             >
               <div className="flex flex-col lg:flex-row lg:justify-between justify-start items-start lg:items-center">
                 <div>
@@ -507,7 +508,9 @@ const Home = () => {
                     src={skill.image.url}
                     alt=""
                   />
-                  <p className="text-center text-xs font-libre mt-1">{skill.name}</p>
+                  <p className="text-center text-xs font-libre mt-1">
+                    {skill.name}
+                  </p>
                 </div>
               ))}
             </div>
@@ -525,7 +528,9 @@ const Home = () => {
             {portfolio.user?.projects
               .sort((a, b) => a.sequence - b.sequence)
               .map((project, index) => (
-                <div key={index} className="relative">
+                <div data-aos="fade-up"
+                data-aos-duration="2000"
+                   key={index} className="relative">
                   <img
                     src={project.image.url}
                     alt=""
