@@ -340,7 +340,7 @@ const Home = () => {
         className="bg-black text-white lg:p-16  py-24 px-10 border-t border-b border-b-gray-900 border-t-gray-900 p-5"
         id="about"
       >
-        <h2 className="font-libre text-4xl font-semibold mb-3 mt-7 lg:mt-0 lg:px-16 px-0">
+        <h2 className="font-libre text-4xl font-semibold mb-3 mt-7 md:mt-10 lg:px-16 px-0">
           {portfolio.user?.about.name}
         </h2>
         <p className="font-libre text-lg mt-1 text-gray-400 lg:mt-0 lg:px-16 px-0">
@@ -373,7 +373,7 @@ const Home = () => {
                 <motion.img
                   src={portfolio.user?.about.avatar.url}
                   alt=""
-                  className="w-96"
+                  className="lg:w-96"
                   onLoad={() => setIsLoaded(true)}
                 />
               </motion.div>
@@ -421,7 +421,7 @@ const Home = () => {
         className="bg-black text-white lg:p-16 p-5 py-24 px-10"
         id="services"
       >
-        <h2 className="font-libre text-4xl font-semibold mb-6 lg:px-16 px-0">
+        <h2 className="font-libre text-4xl font-semibold mb-6 lg:px-16 px-0  md:mt-10">
           My services
         </h2>
         <div className="flex flex-col">
@@ -465,8 +465,8 @@ const Home = () => {
         id="skills"
       >
         <div className="flex flex-col lg:flex-row justify-center items-center gap-24">
-          <div className="space-y-8 lg:w-1/2">
-            <div className="space-y-8">
+          <div className="space-y-8 lg:w-1/2 w-full">
+            <div className="space-y-8 md:mt-10">
               <h2 className="font-libre text-4xl">My Skills</h2>
               <p className="font-roboto">{portfolio.user?.about.subTitle}</p>
             </div>
@@ -498,7 +498,7 @@ const Home = () => {
             <div
               data-aos="fade-up"
               data-aos-duration="2000"
-              className="grid grid-cols-2 lg:grid-cols-3 gap-3"
+              className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-1"
             >
               {portfolio.user?.skills.map((skill, index) => (
                 <div key={index}>
@@ -507,6 +507,7 @@ const Home = () => {
                     src={skill.image.url}
                     alt=""
                   />
+                  <p className="text-center text-xs font-libre mt-1">{skill.name}</p>
                 </div>
               ))}
             </div>
@@ -517,7 +518,7 @@ const Home = () => {
       {/* projects section */}
       <div className="border-b-gray-900 border-b" id="projects">
         <section className="bg-black text-white lg:p-16 p-5 py-26">
-          <h2 className="font-libre font-semibold text-4xl mb-8">
+          <h2 className="font-libre font-semibold text-4xl mb-8 md:mt-10">
             My Recent Works
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -584,7 +585,7 @@ const Home = () => {
 
       {/* timeline section*/}
       <section className="bg-black text-white lg:p-16  p-5" id="timeline">
-        <div className="px-12 border border-gray-900 py-12 mt-8">
+        <div className="px-12 border border-gray-900 py-12 mt-8 md:mt-10">
           <Tabs>
             <TabList className="text-center font-semibold text-lg font-libre mb-9">
               <Tab>Education</Tab>
@@ -775,7 +776,7 @@ const Home = () => {
       {/* review section */}
       <div className="border-b-gray-900 border-b" id="reviews">
         <section className="bg-black text-white lg:p-16 p-5 py-24 px-10">
-          <div className="slider-container">
+          <div className="slider-container md:mt-7">
             <Slider {...settings}>
               {portfolio.user?.testimonials.map((testimonial, index) => (
                 <div key={index} className="mb-4 mt-12">
@@ -807,7 +808,7 @@ const Home = () => {
         className="bg-black text-white lg:p-16 lg: p-5 py-26 mb-10 mt-3"
         id="contact"
       >
-        <h2 className="font-libre font-semibold text-4xl lg:text-6xl mb-8">
+        <h2 className="font-libre font-semibold text-4xl lg:text-6xl mb-8  md:mt-10">
           Get In Touch
         </h2>
 
