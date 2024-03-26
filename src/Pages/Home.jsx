@@ -12,6 +12,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { motion } from "framer-motion";
+import Aos from "aos";
+import { BallTriangle } from "react-loader-spinner";
 
 const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`;
 const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`;
@@ -20,6 +22,13 @@ const Home = () => {
   const [portfolio, setPortfolio] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
 
   useEffect(() => {
     fetch(
@@ -31,8 +40,22 @@ const Home = () => {
       .then((data) => {
         console.log(data);
         setPortfolio(data);
+        setIsLoaded(true);
       });
   }, []);
+
+  if (!isLoaded) {
+    return <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+    <BallTriangle
+      height={100}
+      width={100}
+      radius={5}
+      color="#FFFFFF"
+      ariaLabel="ball-triangle-loading"
+      visible={true}
+    />
+  </div>;
+  }
 
   const settings = {
     dots: false,
@@ -43,10 +66,6 @@ const Home = () => {
     autoplaySpeed: 2000,
     pauseOnHover: true,
   };
-
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -298,11 +317,15 @@ const Home = () => {
       >
         <div className="flex lg:flex-row justify-between items-center lg:text-left text-center gap-8 flex-col-reverse">
           <div className="w-1/2 space-y-6">
-            <div data-aos="fade-down" data-aos-duration="2000">
-              <h1 className="font-libre font-semibold xl:text-8xl lg:text-6xl text-4xl">
-                {portfolio.user?.about.title}
-              </h1>
-            </div>
+          <motion.div
+  initial={{ opacity: 0, y: -50 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 2 }}
+>
+  <h1 className="font-libre font-semibold xl:text-8xl lg:text-6xl text-4xl">
+    {portfolio.user?.about.title}
+  </h1>
+</motion.div>
             <div className="flex flex-col lg:flex-row justify-center items-center lg:gap-0 gap-5">
               <a
                 href="#contact"
@@ -340,7 +363,7 @@ const Home = () => {
         className="bg-black text-white lg:p-16  py-24 px-10 border-t border-b border-b-gray-900 border-t-gray-900 p-5"
         id="about"
       >
-        <h2 className="font-libre text-4xl font-semibold mb-3 mt-7 md:mt-10 lg:px-16 px-0">
+        <h2 className="font-libre text-4xl font-semibold mb-3 mt-10 lg:px-16 px-0">
           {portfolio.user?.about.name}
         </h2>
         <p className="font-libre text-lg mt-1 text-gray-400 lg:mt-0 lg:px-16 px-0">
@@ -426,14 +449,17 @@ const Home = () => {
         </h2>
         <div className="flex flex-col">
           {portfolio.user?.services.map((service, index) => (
-            <div
-              data-aos="fade-up"
-            data-aos-duration="2000"
+            <motion.div
  
               key={index}
               className="border-b border-collapse p-14 border-slate-900 group relative"
             >
-              <div className="flex flex-col lg:flex-row lg:justify-between justify-start items-start lg:items-center">
+              <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 2 }}
+              transition={{ duration: 5 }}
+              viewport={{ once: true }}
+              className="flex flex-col lg:flex-row lg:justify-between justify-start items-start lg:items-center">
                 <div>
                   <h2 className="font-libre lg:text-6xl text-3xl">
                     {service.name}
@@ -449,13 +475,13 @@ const Home = () => {
                     </h2>
                   </div>
                 </a>
-              </div>
+              </motion.div>
               <img
                 className="w-64 hidden lg:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 src={service.image.url}
                 alt=""
               />
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
@@ -474,7 +500,6 @@ const Home = () => {
             {/* progress */}
             <div
               data-aos="fade-down"
-              data-aos-duration="2000"
               className="font-libre"
             >
               {portfolio.user?.skills
@@ -498,8 +523,8 @@ const Home = () => {
           <div>
             <div
               data-aos="fade-up"
-              data-aos-duration="2000"
-              className="grid grid-cols-2 md:grid-cols-3 gap-1"
+              className="grid grid-cols-2 md:grid-cols-3
+               gap-1"
             >
               {portfolio.user?.skills.map((skill, index) => (
                 <div key={index}>
@@ -521,15 +546,15 @@ const Home = () => {
       {/* projects section */}
       <div className="border-b-gray-900 border-b" id="projects">
         <section className="bg-black text-white lg:p-16 p-5 py-26">
-          <h2 className="font-libre font-semibold text-4xl mb-8 md:mt-10">
+          <h2 className="font-libre font-semibold text-4xl mb-8 mt-20 lg:mt-10">
             My Recent Works
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {portfolio.user?.projects
               .sort((a, b) => a.sequence - b.sequence)
               .map((project, index) => (
-                <div data-aos="fade-up"
-                data-aos-duration="2000"
+                <div 
+                data-aos="fade-up"
                    key={index} className="relative">
                   <img
                     src={project.image.url}
@@ -590,7 +615,7 @@ const Home = () => {
 
       {/* timeline section*/}
       <section className="bg-black text-white lg:p-16  p-5" id="timeline">
-        <div className="px-12 border border-gray-900 py-12 mt-8 md:mt-10">
+        <div className="px-12 border border-gray-900 py-12 mt-20 lg:mt-12">
           <Tabs>
             <TabList className="text-center font-semibold text-lg font-libre mb-9">
               <Tab>Education</Tab>
@@ -813,14 +838,13 @@ const Home = () => {
         className="bg-black text-white lg:p-16 lg: p-5 py-26 mb-10 mt-3"
         id="contact"
       >
-        <h2 className="font-libre font-semibold text-4xl lg:text-6xl mb-8  md:mt-10">
+        <h2 className="font-libre font-semibold text-4xl lg:text-6xl mb-8 mt-20 lg:mt-10">
           Get In Touch
         </h2>
 
         <div className="flex justify-start flex-col lg:flex-row lg:gap-20 lg:items-center">
           <div
             data-aos="fade-up"
-            data-aos-duration="2000"
             className="flex flex-col lg:flex-row justify-start lg:w-1/2 "
           >
             <form
@@ -872,7 +896,6 @@ const Home = () => {
           </div>
           <div
             data-aos="fade-down"
-            data-aos-duration="2000"
             className="flex flex-col justify-start space-y-16 mt-8 lg:mt-0 lg:w-1/2"
           >
             <div className="flex justify-center lg:justify-start items-center gap-4 border-b-gray-900 border-b pb-8 w-full">
