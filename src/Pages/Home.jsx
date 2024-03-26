@@ -45,16 +45,25 @@ const Home = () => {
   }, []);
 
   if (!isLoaded) {
-    return <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
-    <BallTriangle
-      height={100}
-      width={100}
-      radius={5}
-      color="#FFFFFF"
-      ariaLabel="ball-triangle-loading"
-      visible={true}
-    />
-  </div>;
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <BallTriangle
+          height={100}
+          width={100}
+          radius={5}
+          color="#FFFFFF"
+          ariaLabel="ball-triangle-loading"
+          visible={true}
+        />
+      </div>
+    );
   }
 
   const settings = {
@@ -317,15 +326,15 @@ const Home = () => {
       >
         <div className="flex lg:flex-row justify-between items-center lg:text-left text-center gap-8 flex-col-reverse">
           <div className="w-1/2 space-y-6">
-          <motion.div
-  initial={{ opacity: 0, y: -50 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 2 }}
->
-  <h1 className="font-libre font-semibold xl:text-8xl lg:text-6xl text-4xl">
-    {portfolio.user?.about.title}
-  </h1>
-</motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: -50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 2 }}
+            >
+              <h1 className="font-libre font-semibold xl:text-8xl lg:text-6xl text-4xl">
+                {portfolio.user?.about.title}
+              </h1>
+            </motion.div>
             <div className="flex flex-col lg:flex-row justify-center items-center lg:gap-0 gap-5">
               <a
                 href="#contact"
@@ -450,16 +459,16 @@ const Home = () => {
         <div className="flex flex-col">
           {portfolio.user?.services.map((service, index) => (
             <motion.div
- 
               key={index}
               className="border-b border-collapse p-14 border-slate-900 group relative"
             >
               <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 2 }}
-              transition={{ duration: 5 }}
-              viewport={{ once: true }}
-              className="flex flex-col lg:flex-row lg:justify-between justify-start items-start lg:items-center">
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 2 }}
+                transition={{ duration: 5 }}
+                viewport={{ once: true }}
+                className="flex flex-col lg:flex-row lg:justify-between justify-start items-start lg:items-center"
+              >
                 <div>
                   <h2 className="font-libre lg:text-6xl text-3xl">
                     {service.name}
@@ -498,10 +507,7 @@ const Home = () => {
               <p className="font-roboto">{portfolio.user?.about.subTitle}</p>
             </div>
             {/* progress */}
-            <div
-              data-aos="fade-down"
-              className="font-libre"
-            >
+            <div data-aos="fade-down" className="font-libre">
               {portfolio.user?.skills
                 .sort((a, b) => a.sequence - b.sequence)
                 .map((skill, index) => (
@@ -553,9 +559,7 @@ const Home = () => {
             {portfolio.user?.projects
               .sort((a, b) => a.sequence - b.sequence)
               .map((project, index) => (
-                <div 
-                data-aos="fade-up"
-                   key={index} className="relative">
+                <div data-aos="fade-up" key={index} className="relative">
                   <img
                     src={project.image.url}
                     alt=""
@@ -793,7 +797,7 @@ const Home = () => {
 
           <div className="flex justify-center items-center mt-9">
             <a
-              href="#contact"
+              href="#"
               className="inline-flex items-center justify-center h-14 px-8 py-0 text-base font-semibold text-center text-white no-underline align-middle transition-all duration-300 ease-in-out bg-transparent  bg-gray-950 hover:border-2 border-gray-950 border-2 hover:bg-black border-solid  cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline"
             >
               Download CV
