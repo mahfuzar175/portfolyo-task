@@ -11,9 +11,7 @@ const ErrorPage = () => {
           <p className="text-2xl font-bold tracking-tight text-gray-500 sm:text-4xl">
             Uh-oh!
           </p>
-
           <p className="mt-4 text-gray-300 font-medium mb-4">We can't find that page.</p>
-
           <Link
               to="/"
               smooth={true}
